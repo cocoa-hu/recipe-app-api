@@ -1,7 +1,7 @@
 """
 Views for the recipe APIs.
 """
-from drf_spectacular.utils import(
+from drf_spectacular.utils import (
     extend_schema_view,
     extend_schema,
     OpenApiParameter,
@@ -33,13 +33,13 @@ from recipe import serializers
             OpenApiParameter(
                 'tags',
                 OpenApiTypes.STR,
-                description = 'Comma separated list of IDs to filter'
+                description='Comma separated list of IDs to filter'
             ),
             OpenApiParameter(
                 'ingredients',
                 OpenApiTypes.STR,
-                description = 'Comma separated list of ingredient IDs to filter'
-            )
+                description='Comma separated list of ingredient IDs to filter'
+            ),
         ]
     )
 )
@@ -64,7 +64,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(tags__id__in=tag_ids)
         if ingredients:
             ingredient_ids = self._params_to_ints(ingredients)
-            queryset =  queryset.filter(ingredients__id__in=ingredient_ids)
+            queryset = queryset.filter(ingredients__id__in=ingredient_ids)
 
         return queryset.filter(
             user=self.request.user
@@ -102,7 +102,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 'assigned_only',
                 OpenApiTypes.INT, enum=[0, 1],
                 description='Filter by items assigned to recipes.',
-            )
+            ),
         ]
     )
 )

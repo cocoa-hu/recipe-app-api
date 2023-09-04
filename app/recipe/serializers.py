@@ -7,7 +7,7 @@ from core.models import (
     Recipe,
     Tag,
     Ingredient,
-    )
+)
 
 
 class IngredientSerializer(serializers.ModelSerializer):
